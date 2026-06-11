@@ -27,18 +27,18 @@ The objective of this project is to improve access security by introducing a sec
 To develop a secure access control system using RFID and OTP technologies for enhanced authentication and protection.
 
 ## Secondary Objectives
-Authenticate users using RFID technology.
-Generate dynamic OTPs using RTC values.
-Send OTPs through GSM modem.
-Verify user-entered OTP using keypad.
-Restrict access after multiple invalid attempts.
-Maintain real-time system operation.
-Provide administrator-controlled RTC configuration.
-Control door lock mechanism through relay operation.
+- Authenticate users using RFID technology.
+- Generate dynamic OTPs using RTC values.
+- Send OTPs through GSM modem.
+- Verify user-entered OTP using keypad.
+- Restrict access after multiple invalid attempts.
+- Maintain real-time system operation.
+- Provide administrator-controlled RTC configuration.
+- Control door lock mechanism through relay operation.
 ## Hardware Requirements
-LPC2148 ARM7 Development Board
-RFID Reader Module(AT89C2051)
-RFID Tag/Card
+- LPC2148 ARM7 Development Board
+- RFID Reader Module(AT89C2051)
+- RFID Tag/Card
 GSM Modem (M660A)
 16x2 LCD Display
 4x4 Matrix Keypad
@@ -50,11 +50,11 @@ Embedded C Programming Language
 Flash Magic
 LPC2148 Device Support Package
 ## System Architecture
-
+```
    RFID Card
       |
       V
-RFID Reader
+  RFID Reader
      |
      V
  LPC2148 Controller
@@ -81,7 +81,8 @@ RFID Reader
  Access Granted   Access Denied
       |
       V
- Door Relay Control
+  Door open
+```
 ## Project Workflow
 
 1. System Initialization
