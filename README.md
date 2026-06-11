@@ -151,8 +151,8 @@ LCD interface driver:
 - OTP entry support
 ## admin.c
 Administrator module:
-RTC parameter modification
-System configuration
+- RTC parameter modification
+- System configuration
 ## extinteruppt.c
 - External interrupt module:
 - Admin mode activation
@@ -226,7 +226,7 @@ The project provided practical experience in:
 4. Easy User Interaction
 5. Modular Design
 6. Reliable Authentication
-7. Expandable Architectur
+7. Expandable Architecture
 ## Future Scope
 1. Fingerprint Authentication
 2. Face Recognition Integration
