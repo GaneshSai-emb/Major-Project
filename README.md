@@ -51,9 +51,9 @@ Flash Magic
 LPC2148 Device Support Package
 ## System Architecture
 
-RFID Card
-     |
-     V
+   RFID Card
+      |
+      V
 RFID Reader
      |
      V
@@ -153,13 +153,13 @@ Administrator module:
 RTC parameter modification
 System configuration
 ## extinteruppt.c
-External interrupt module:
-Admin mode activation
+- External interrupt module:
+- Admin mode activation
 ## delay.c
-Software delay routines:
-Microsecond delay
-Millisecond delay
-Second delay
+- Software delay routines:
+- Microsecond delay
+- Millisecond delay
+- Second delay
 ## Technical Concepts Used
 - ARM7 LPC2148 Microcontroller
 - Embedded C Programming
@@ -174,18 +174,18 @@ Second delay
 - Real-Time Embedded Systems
 ## Project Outcomes
 ## Security Outcomes
-Successfully implemented Two-Factor Authentication.
-Improved access security compared to traditional RFID systems.
-Prevented unauthorized access through dynamic OTP verification.
-Restricted invalid authentication attempts.
+- Successfully implemented Two-Factor Authentication.
+- Improved access security compared to traditional RFID systems.
+- Prevented unauthorized access through dynamic OTP verification.
+- Restricted invalid authentication attempts.
 ## Technical Outcomes
-Successfully interfaced RFID Reader with LPC2148.
-Implemented GSM communication using UART0.
-Implemented RFID communication using UART1.
-Developed RTC-based OTP generation mechanism.
-Integrated LCD and Keypad user interface.
-Implemented relay-controlled door access.
-Developed interrupt-driven communication modules.
+- Successfully interfaced RFID Reader with LPC2148.
+- Implemented GSM communication using UART0.
+- Implemented RFID communication using UART1.
+- Developed RTC-based OTP generation mechanism.
+- Integrated LCD and Keypad user interface.
+- Implemented relay-controlled door access.
+- Developed interrupt-driven communication modules.
 ## Learning Outcomes
 The project provided practical experience in:
 - Embedded Firmware Development
