@@ -1,10 +1,7 @@
-														 //lcd_defines.h
-
-
+//lcd_defines.h
 //lcd_pin defines
 
-
-#define LCD_DATA 16  //p0.8 t0 p0.15
+#define LCD_DATA 16  //p0.16 t0 p0.24
 
 #define RS 28 //p0.28
 
