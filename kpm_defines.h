@@ -1,11 +1,13 @@
-// Row pin definitions for 4x4 keypad matrix
-#define ROW0 16   // Row 0 connected to GPIO pin 16
-#define ROW1 17   // Row 1 connected to GPIO pin 17
-#define ROW2 18   // Row 2 connected to GPIO pin 18
-#define ROW3 19   // Row 3 connected to GPIO pin 19
+// Keypad connected to LPC2148 GPIO Port 1 (P1.16 - P1.23)
 
-// Column pin definitions for 4x4 keypad matrix
-#define COL0 20   // Column 0 connected to GPIO pin 20
-#define COL1 21   // Column 1 connected to GPIO pin 21
-#define COL2 22   // Column 2 connected to GPIO pin 22
-#define COL3 23   // Column 3 connected to GPIO pin 23
+// ROW lines (inputs)
+#define ROW0 16   // P1.16 - Keypad Row 0
+#define ROW1 17   // P1.17 - Keypad Row 1
+#define ROW2 18   // P1.18 - Keypad Row 2
+#define ROW3 19   // P1.19 - Keypad Row 3
+
+// COLUMN lines (outputs)
+#define COL0 20   // P1.20 - Keypad Column 0
+#define COL1 21   // P1.21 - Keypad Column 1
+#define COL2 22   // P1.22 - Keypad Column 2
+#define COL3 23   // P1.23 - Keypad Column 3
