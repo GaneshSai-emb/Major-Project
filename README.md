@@ -220,23 +220,23 @@ The project provided practical experience in:
 - Laboratory Security
 - Asset Protection Systems
 ## Advantages
-Enhanced Security
-Low Cost Implementation
-Real-Time Operation
-Easy User Interaction
-Modular Design
-Reliable Authentication
-Expandable Architectur
-Future Scope
-Fingerprint Authentication
-Face Recognition Integration
-Mobile Application Monitoring
-Cloud-Based Access Logging
-IoT Connectivity
-Wi-Fi Integration
-Database-Based User Management
-Remote Access Control
-Real-Time Security Notification
+1. Enhanced Security
+2. Low Cost Implementation
+3. Real-Time Operation
+4. Easy User Interaction
+5. Modular Design
+6. Reliable Authentication
+7. Expandable Architectur
+## Future Scope
+1. Fingerprint Authentication
+2. Face Recognition Integration
+3. Mobile Application Monitoring
+4. Cloud-Based Access Logging
+5. IoT Connectivity
+6. Wi-Fi Integration
+7. Database-Based User Management
+8. Remote Access Control
+9. Real-Time Security Notification
 ## Conclusion
 The RFID and OTP Based Smart Security Access Control System successfully demonstrates a secure and reliable embedded authentication platform using LPC2148. By integrating RFID identification with GSM-based OTP verification, the system provides enhanced protection against unauthorized access.
 The project effectively combines multiple embedded technologies including RFID, GSM, RTC, LCD, Keypad, Interrupts, and Relay Control into a single real-time application. The developed system serves as a practical, scalable, and cost-effective security solution suitable for residential, industrial, educational, and commercial environments.
