@@ -39,11 +39,11 @@ To develop a secure access control system using RFID and OTP technologies for en
 - LPC2148 ARM7 Development Board
 - RFID Reader Module(AT89C2051)
 - RFID Tag/Card
-GSM Modem (M660A)
-16x2 LCD Display
-4x4 Matrix Keypad
-Power Supply Unit
-Connecting Wires
+- GSM Modem (M660A)
+- 16x2 LCD Display
+- 4x4 Matrix Keypad
+- Power Supply Unit
+- Connecting Wires
 ## Software Requirements
 Keil uVision IDE
 Embedded C Programming Language
@@ -107,7 +107,6 @@ The user enters the received OTP through the matrix keypad. The entered OTP is c
 ## Step 5: Access Control
 If the OTP matches and is within the valid time limit:
 - Access is granted.
-- Door relay is activated.
 - Door unlocks for authorized entry.
 If OTP verification fails:
 - Access is denied.
