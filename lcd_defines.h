@@ -3,11 +3,11 @@
 
 #define LCD_DATA 16  //p0.16 t0 p0.24
 
-#define RS 28 //p0.28
+#define RS 28   //p0.28
 
-#define RW 30//p0.30
+#define RW 30  //p0.30
 
-#define EN 29 //p0.29
+#define EN 29  //p0.29
 
 
 //lcd_commands
