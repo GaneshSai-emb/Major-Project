@@ -1,332 +1,220 @@
-//lcd.c
+// lcd.c
 
 #include "DEFINES.H"
-
 #include "types.h"
-
 #include <lpc21xx.h>
-
 #include "lcd_defines.h"
-
 #include "delay.h"
 
+/* Write data/command byte to LCD */
 void WriteLCD(u8 data)
-
 {
-
-	SCLRBIT(IOCLR0,RW);// r/w=0(to perform write operation)
-
+	SCLRBIT(IOCLR0,RW);		/* Write mode */
 	WRITEBYTE(IOPIN0,LCD_DATA,data);
 
-	SSETBIT(IOSET0,EN);// en=1
-
+	SSETBIT(IOSET0,EN);		/* Enable pulse */
 	delay_us(1);
+	SCLRBIT(IOCLR0,EN);
 
-	SCLRBIT(IOCLR0,EN);// en=0
-
-	delay_ms(2); // internal process
-
+	delay_ms(2);			/* LCD processing delay */
 }
 
+/* Send command to LCD */
 void CmdLCD(u8 cmd)
-
 {
-
-	SCLRBIT(IOCLR0,RS);//rs=0(command reg select)
-
-	WriteLCD(cmd);// write cmd onto the data pins
-
+	SCLRBIT(IOCLR0,RS);		/* Command register */
+	WriteLCD(cmd);
 }
 
+/* Send character to LCD */
 void CharLCD(u8 ascii)
-
 {
-
-	SSETBIT(IOSET0,RS);//rs=1 (data reg select)
-
-	WriteLCD(ascii);// write data onto the data pins
-
+	SSETBIT(IOSET0,RS);		/* Data register */
+	WriteLCD(ascii);
 }
 
-
+/* Initialize LCD */
 void InitLCD(void)
-
 {
-
-	//p0.8 t0 p0.15 cfg as outputs
-
+	/* Configure LCD data pins as output */
 	WRITEBYTE(IODIR0,LCD_DATA,0xFF);
 
-	//p0.16 t0 p0.18 cfg as outputs
-
+	/* Configure control pins as output */
 	SETBIT(IODIR0,RS);
-
 	SETBIT(IODIR0,RW);
-
 	SETBIT(IODIR0,EN);
-
-	
 
 	delay_ms(15);
 
+	/* LCD initialization sequence */
 	CmdLCD(MODE_8BIT_1LINE);
-
 	delay_ms(5);
 
 	CmdLCD(MODE_8BIT_1LINE);
-
 	delay_us(100);
 
 	CmdLCD(MODE_8BIT_1LINE);
 
-	
-
+	/* LCD settings */
 	CmdLCD(MODE_8BIT_2LINE);
-
 	CmdLCD(DISP_ON_CUR_OFF);
-
-	CmdLCD(CLEAR_LCD );
-
-	CmdLCD(SHIFT_CUR_RIGHT );
-
+	CmdLCD(CLEAR_LCD);
+	CmdLCD(SHIFT_CUR_RIGHT);
 }
- 
 
+/* Display string on LCD */
 void StrLCD(u8* str)
-
 {
-
 	while(*str)
-
 	{
-
 		CharLCD(*str++);
-
 	}
-
 }
 
+/* Display unsigned integer */
 void U32LCD(u32 n)
-
 {
-
 	u8 a[10];
-
 	s32 i=0;
 
 	if(n==0)
-
+	{
+		CharLCD('0');
+	}
+	else
+	{
+		/* Store digits in reverse order */
+		while(n)
 		{
-
-			CharLCD('0');
-
-			
-
+			a[i++]=(n%10)+'0';
+			n/=10;
 		}
 
-	else{
-
-				while(n)
-
-				{
-
-					a[i++]=(n%10)+'0';
-
-					n/=10;
-
-				}
-
-				for(--i; i>=0; i--)
-
-				{
-
-					CharLCD(a[i]);
-
-				}
-
-			}
-
+		/* Display digits */
+		for(--i;i>=0;i--)
+		{
+			CharLCD(a[i]);
+		}
+	}
 }
 
+/* Display signed integer */
 void S32LCD(s32 n)
-
 {
-
 	if(n<0)
-
 	{
-
-		n=-n;
-
 		CharLCD('-');
-
-		U32LCD(n);
-
+		n=-n;
 	}
 
-	
-
+	U32LCD(n);
 }
 
-void BinLCD(u32 n, u8 nbd)
-
+/* Display binary number */
+void BinLCD(u32 n,u8 nbd)
 {
-
-	s32  i;
-
-	for(i=(nbd-1); i>=0; i--)
-
-	{
-
-		CharLCD(((n>>i)&1)+48);
-
-	}
-
-}
-
-void BuildCGRAM(u8* p, u8 nBytes)
-
-{
-
 	s32 i;
 
-	//select cgram
+	for(i=nbd-1;i>=0;i--)
+	{
+		CharLCD(((n>>i)&1)+'0');
+	}
+}
+
+/* Create custom character in CGRAM */
+void BuildCGRAM(u8* p,u8 nBytes)
+{
+	s32 i;
 
 	CmdLCD(GOTO_CGRAM);
 
-	for(i=0; i<nBytes; i++)
-
+	for(i=0;i<nBytes;i++)
 	{
-
-		//write byte by byte via data reg
-
 		CharLCD(p[i]);
-
 	}
 
-	//go to DDRAM
-
 	CmdLCD(GOTO_LINE2_POS0);
-
 }
 
-void f32LCD(f32 fnum, u8 ndp)
-
+/* Display floating point number */
+void f32LCD(f32 fnum,u8 ndp)
 {
-
 	u32 inum;
 
 	if(fnum<0.0)
-
 	{
-
 		CharLCD('-');
-
 		fnum=-fnum;
-
 	}
 
 	inum=fnum;
 
 	U32LCD(inum);
-
 	CharLCD('.');
 
 	while(ndp)
-
 	{
-
 		fnum=(fnum-inum)*10;
-
 		inum=fnum;
 
-		CharLCD(inum+48);
-
+		CharLCD(inum+'0');
 		ndp--;
-
 	}
-
 }
 
-
+/* Display hexadecimal number */
 void HexLCD(u32 n)
-
 {
-
 	u8 a[8],rem;
-
 	s32 i=0;
 
 	if(n==0)
-
 	{
-
 		CharLCD('0');
-
 	}
-
 	else
-
+	{
 		while(n)
-
 		{
-
 			rem=n%16;
 
-			(rem<10 )? (rem+=48 ):(rem+=55);
+			if(rem<10)
+				rem+=48;
+			else
+				rem+=55;
 
 			a[i++]=rem;
-
 			n/=16;
-
 		}
 
-		for(--i; i>=0; i--)
-
+		for(--i;i>=0;i--)
 		{
-
 			CharLCD(a[i]);
-
 		}
-
+	}
 }
 
+/* Display octal number */
 void OctLCD(u32 n)
-
 {
-
+	u8 a[12];
 	s32 i=0;
 
-	u8 a[12];
-
 	if(n==0)
-
 	{
-
 		CharLCD('0');
-
 	}
-
 	else
-
+	{
 		while(n)
-
 		{
-
-			a[i++]=(n%8)+48;
-
+			a[i++]=(n%8)+'0';
 			n/=8;
-
-		
-
 		}
 
-		for(--i; i>=0; i--)
-
+		for(--i;i>=0;i--)
 		{
-
 			CharLCD(a[i]);
-
 		}
-
+	}
 }
