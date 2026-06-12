@@ -83,6 +83,17 @@ LPC2148 Device Support Package
       V
   Door open
 ```
+
+## Project Images
+
+<p float="left">
+  <img src="image5.jpeg" width="500"/>
+  <img src="image6 (1).jpeg" width="500"/>
+  <img src="image7.jpeg" width="500"/>
+  <img src="image8.jpeg" width="500"/> 
+ <img src="image9.jpeg" width="500"/> 
+</p>
+
 ## Project Workflow
 
 1. System Initialization
