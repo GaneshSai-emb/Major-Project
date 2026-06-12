@@ -94,6 +94,13 @@ LPC2148 Device Support Package
  <img src="image9.jpeg" width="500"/> 
 </p>
 
+## Demo Videos
+
+  <p float="left">
+  <img src="video3.gif" width="400"/>
+  <img src="video5.gif" width="400"/>  
+</p>
+
 ## Project Workflow
 
 1. System Initialization
